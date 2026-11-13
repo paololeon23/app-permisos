@@ -24,3 +24,4 @@ App PWA + dashboard. Un solo backend: **Apps Script `code.gs`** (hoja BD-PERMISO
 
 Sin red, los pases quedan **Pendiente** y se suben solos al recuperar conexión (3G+/H+/4G).
 # app-permisos
+# permisos-web
