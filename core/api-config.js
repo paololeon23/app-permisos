@@ -30,7 +30,7 @@ window.API_CONFIG = {
   COMPANY: 'Q Berries',
   YEAR: 2026,
   TIMEZONE: 'America/Lima',
-  PUBLIC_URL: 'https://pasessalida-qberries.netlify.app/',
-  INSTALL_URL: 'https://pasessalida-qberries.netlify.app/instalar.html',
-  LAUNCH_URL: 'https://pasessalida-qberries.netlify.app/abrir.html',
+  PUBLIC_URL: 'https://app-permisosqberries.netlify.app/',
+  INSTALL_URL: 'https://app-permisosqberries.netlify.app/instalar.html',
+  LAUNCH_URL: 'https://app-permisosqberries.netlify.app/abrir.html',
 };
