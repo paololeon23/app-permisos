@@ -18,14 +18,10 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  document.querySelectorAll('.nav-btn').forEach((btn) => {
+  // Solo tabs con data-tab (el botón Registrar no cambia de panel)
+  document.querySelectorAll('.nav-btn[data-tab]').forEach((btn) => {
     btn.addEventListener('click', () => switchTab(btn.dataset.tab));
   });
-
-  // Prefetch segunda pestaña al primer idle
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(() => AV.historial.render());
-  }
 
   async function boot() {
     // Recuperar cola/historial aunque se haya cerrado la app

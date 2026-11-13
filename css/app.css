@@ -1071,6 +1071,10 @@ body.pdf-modal-open {
   box-shadow: none;
 }
 
+.bottom-nav-inner.is-single {
+  grid-template-columns: 1fr;
+}
+
 .app-version {
   margin: 16px 0 4px;
   padding: 0;

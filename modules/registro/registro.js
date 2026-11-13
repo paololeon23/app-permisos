@@ -126,9 +126,10 @@ AV.registro = {
     });
     if (this.fpIngreso?.altInput) {
       this.fpIngreso.altInput.readOnly = true;
-      this.fpIngreso.altInput.placeholder = '-';
+      this.fpIngreso.altInput.placeholder = '01/01/2026';
       this.fpIngreso.altInput.tabIndex = -1;
     }
+    this.fpIngreso.setDate('2026-01-01', true);
 
     // fechaSalida: abrir SOLO con clic (no con focus → evitaba “se abre solo”)
     this.fpFecha = flatpickr('#fechaSalida', {
@@ -245,6 +246,12 @@ AV.registro = {
       e.preventDefault();
       this.submit();
     });
+
+    // Único botón POST: barra fija inferior
+    document.getElementById('btnGuardar')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.submit();
+    });
   },
 
   /** Abre fecha solo con clic; evita reopen por focus/teclado */
@@ -351,7 +358,7 @@ AV.registro = {
   clearWorkerFields() {
     document.getElementById('nombres').value = '';
     document.getElementById('cargo').value = '';
-    this.fpIngreso.clear();
+    this.fpIngreso.setDate('2026-01-01', true);
   },
 
   async openHoraModal() {
@@ -455,8 +462,8 @@ AV.registro = {
     if (!opts.skipDni) document.getElementById('dni').value = w.dni || '';
     document.getElementById('nombres').value = w.nombres || '';
     document.getElementById('cargo').value = w.cargo || '';
-    if (w.fIngreso) this.fpIngreso.setDate(w.fIngreso, true);
-    else this.fpIngreso.clear();
+    // Fijo para todos (el JSON a menudo no trae fIngreso y bloqueaba el registro)
+    this.fpIngreso.setDate('2026-01-01', true);
   },
 
   setDniRespStatus(type, text) {
@@ -597,7 +604,7 @@ AV.registro = {
       dni: document.getElementById('dni').value.trim(),
       nombres: document.getElementById('nombres').value.trim(),
       cargo: document.getElementById('cargo').value.trim(),
-      fIngreso: document.getElementById('fIngreso').value.trim(),
+      fIngreso: document.getElementById('fIngreso').value.trim() || '2026-01-01',
       motivo,
       motivoDetalle: motivoRaw === 'Otro' ? motivoOtro : '',
       fechaSalida: document.getElementById('fechaSalida').value.trim(),
@@ -727,8 +734,7 @@ AV.registro = {
       btn.classList.remove('is-loading');
       btn.removeAttribute('aria-busy');
       if (!this.dniBlockedHoy) btn.disabled = false;
-      btn.innerHTML = '<i data-lucide="save"></i> Registrar pase de salida';
-      if (window.lucide) lucide.createIcons({ nodes: [btn] });
+      btn.innerHTML = '<span class="nav-label">Registrar pase</span>';
     }
   },
 
@@ -743,7 +749,7 @@ AV.registro = {
     this.invalidateCarnet();
     this.fpFecha.setDate(AV.today(), true);
     document.getElementById('horaSalida').value = AV.nowTime();
-    this.fpIngreso.clear();
+    this.fpIngreso.setDate('2026-01-01', true);
     this.stampRegistro();
     this.syncMotivoUI();
     this.toggleMotivoOtro();

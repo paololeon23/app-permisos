@@ -234,7 +234,7 @@ function crearPermiso_(data) {
       dni: dni,
       nombres: clean_(data.nombres),
       cargo: clean_(data.cargo),
-      fIngreso: clean_(data.fIngreso),
+      fIngreso: clean_(data.fIngreso) || '2026-01-01',
       motivo: clean_(data.motivo),
       fechaSalida: clean_(data.fechaSalida),
       horaSalida: clean_(data.horaSalida),

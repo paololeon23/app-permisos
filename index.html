@@ -73,7 +73,7 @@
         <form id="formPermiso" autocomplete="off" novalidate>
           <div class="card">
             <h2 class="card-title"><i data-lucide="id-card"></i> Datos del trabajador</h2>
-            <p class="helper">Ingrese el DNI del trabajador. Nombre, cargo y fecha de ingreso se completan automáticamente.</p>
+            <p class="helper">Ingrese el DNI del trabajador. Nombre y cargo se completan solos. F. ingreso fija: 01/01/2026.</p>
             <div class="field dni-hero" style="margin-bottom:12px">
               <label for="dni">DNI del trabajador</label>
               <input id="dni" name="dni" inputmode="numeric" maxlength="12" placeholder="Ej. 70839380" required autofocus autocomplete="off" />
@@ -180,42 +180,28 @@
           </div>
 
           <div class="actions-stack">
-            <button type="submit" class="btn btn-primary" id="btnGuardar">
-              <i data-lucide="save"></i> Registrar pase de salida
-            </button>
             <button type="button" class="btn btn-pdf" id="btnPdfPreview" disabled>
               <i data-lucide="file-text"></i> Ver PDF
             </button>
             <p id="pdfHint" class="helper" style="margin:0;text-align:center">
               Al ingresar el DNI puede ver el PDF al instante
             </p>
+            <p class="app-version" id="appVersion" aria-label="Versión de la app">v1.3.1</p>
           </div>
         </form>
       </section>
 
-      <!-- ===== HISTORIAL ===== -->
-      <section id="panel-historial" class="panel" data-panel="historial">
-        <div class="card">
-          <h2 class="card-title"><i data-lucide="history"></i> Historial de subida</h2>
-          <p class="helper">
-            Solo en este celular (máx. <strong>48 horas</strong>). Sin internet el pase queda
-            <strong>Pendiente</strong> y <strong>se sube solo</strong> al detectar conexión.
-            Luego pasa a <strong>Enviado</strong>. Lo del servidor no se borra.
-          </p>
-          <div id="historialSummary" hidden></div>
-          <div id="historialList"></div>
-          <p class="app-version" id="appVersion" aria-label="Versión de la app">v1.3.1</p>
-        </div>
+      <!-- Historial oculto: se sincroniza solo; el POST solo sale del botón fijo -->
+      <section id="panel-historial" class="panel" data-panel="historial" hidden aria-hidden="true">
+        <div id="historialSummary" hidden></div>
+        <div id="historialList" hidden></div>
       </section>
     </main>
 
-    <nav class="bottom-nav" role="tablist" aria-label="Navegación">
-      <div class="bottom-nav-inner">
-        <button type="button" class="nav-btn is-active" data-tab="registro" aria-selected="true">
-          <span class="nav-label">Registro</span>
-        </button>
-        <button type="button" class="nav-btn" data-tab="historial" aria-selected="false">
-          <span class="nav-label">Historial</span>
+    <nav class="bottom-nav" aria-label="Registrar pase">
+      <div class="bottom-nav-inner is-single">
+        <button type="button" class="nav-btn is-active" id="btnGuardar">
+          <span class="nav-label">Registrar pase</span>
         </button>
       </div>
     </nav>

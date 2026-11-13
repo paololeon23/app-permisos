@@ -1,7 +1,7 @@
 /* Service Worker — Pase de salida Q Berries
  * Offline-safe: siempre responde con un Response válido
  */
-const CACHE = 'av-permisos-v67';
+const CACHE = 'av-permisos-v68';
 
 /** Notificación al tocar (abre la app) */
 self.addEventListener('notificationclick', (event) => {

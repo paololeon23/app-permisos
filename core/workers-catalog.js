@@ -46,7 +46,7 @@ AV.workers = {
           dni: String(dni).trim(),
           nombres: String(v.nombre || v.nombres || '').trim(),
           cargo: String(v.cargo || '').trim(),
-          fIngreso: String(v.fIngreso || v.fechaIngreso || '').trim(),
+          fIngreso: String(v.fIngreso || v.fechaIngreso || '2026-01-01').trim() || '2026-01-01',
         };
       });
     }
@@ -68,7 +68,9 @@ AV.workers = {
       dni: key,
       nombres: String(w.nombres || w.apellidosNombres || w.nombre || w.Nombres || '').trim(),
       cargo: String(w.cargo || w.puesto || w.Cargo || '').trim(),
-      fIngreso: String(w.fIngreso || w.fechaIngreso || w.f_ingreso || w.FIngreso || '').trim(),
+      fIngreso:
+        String(w.fIngreso || w.fechaIngreso || w.f_ingreso || w.FIngreso || '2026-01-01').trim() ||
+        '2026-01-01',
     };
   },
 
