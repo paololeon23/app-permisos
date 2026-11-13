@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1b6b3a" />
+  <title>Dashboard permisos · Q Berries</title>
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/app.css" />
+  <link rel="stylesheet" href="./css/dashboard.css" />
+</head>
+<body class="dash-body">
+  <!-- LOGIN -->
+  <section id="loginGate" class="dash-login">
+    <div class="dash-login-card">
+      <img src="./assets/logo-qberries.png" alt="Q Berries" class="dash-login-logo" />
+      <p class="dash-kicker">Q Berries</p>
+      <h1>Dashboard de permisos</h1>
+      <p class="helper">Ingrese la contraseña para ver los pases registrados.</p>
+      <form id="loginForm" autocomplete="off">
+        <div class="field">
+          <label for="dashPass">Contraseña</label>
+          <input id="dashPass" type="password" placeholder="••••••••" required autofocus />
+        </div>
+        <p id="loginError" class="dash-error" hidden>Contraseña incorrecta</p>
+        <button type="submit" class="btn btn-primary">Entrar</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- APP -->
+  <div id="dashApp" class="dash-app" hidden>
+    <header class="dash-top">
+      <div class="dash-brand">
+        <img src="./assets/logo-qberries-white.png" alt="" />
+        <div>
+          <p class="dash-kicker light">Q Berries</p>
+          <h1>Pases de salida</h1>
+        </div>
+      </div>
+      <div class="dash-top-actions">
+        <button type="button" class="btn btn-secondary dash-btn-sm" id="btnRefresh">
+          <i data-lucide="refresh-cw"></i> Actualizar
+        </button>
+        <button type="button" class="btn btn-ghost dash-btn-sm" id="btnLogout">Salir</button>
+      </div>
+    </header>
+
+    <main class="dash-main">
+      <div class="dash-filters card">
+        <div class="field">
+          <label for="filtroFecha">Fecha</label>
+          <input id="filtroFecha" type="date" />
+        </div>
+        <label class="dash-check">
+          <input type="checkbox" id="filtroTodas" />
+          <span>Ver todas las fechas</span>
+        </label>
+        <div class="field dash-grow">
+          <label for="filtroQ">Buscar</label>
+          <input id="filtroQ" type="search" placeholder="DNI, nombre, motivo…" />
+        </div>
+      </div>
+
+      <div class="dash-stats" id="dashStats">
+        <article class="stat-card">
+          <span class="stat-ico users"><i data-lucide="users"></i></span>
+          <div>
+            <strong id="statTotal">0</strong>
+            <span>Total pases</span>
+          </div>
+        </article>
+        <article class="stat-card">
+          <span class="stat-ico health"><i data-lucide="heart-pulse"></i></span>
+          <div>
+            <strong id="statSalud">0</strong>
+            <span>Por salud</span>
+          </div>
+        </article>
+        <article class="stat-card">
+          <span class="stat-ico ok"><i data-lucide="badge-check"></i></span>
+          <div>
+            <strong id="statCarnet">0</strong>
+            <span>Carnet OK</span>
+          </div>
+        </article>
+        <article class="stat-card">
+          <span class="stat-ico check"><i data-lucide="circle-check"></i></span>
+          <div>
+            <strong id="statOk">0</strong>
+            <span>Listos</span>
+          </div>
+        </article>
+      </div>
+
+      <p id="dashStatus" class="helper dash-status">Cargando…</p>
+      <div id="dashList" class="dash-list"></div>
+    </main>
+  </div>
+
+  <!-- Modal PDF -->
+  <div id="pdfModal" class="pdf-overlay" hidden>
+    <div class="pdf-sheet" role="dialog" aria-modal="true">
+      <header class="pdf-sheet-head">
+        <strong>Pase de salida · firmar</strong>
+        <button type="button" class="pdf-x" id="pdfModalClose" aria-label="Cerrar">×</button>
+      </header>
+      <div class="pdf-sheet-body">
+        <div id="pdfPreview" class="pdf-preview"></div>
+      </div>
+      <footer class="pdf-sheet-foot">
+        <button type="button" class="btn btn-secondary" id="pdfModalCancel">Cerrar</button>
+        <button type="button" class="btn btn-primary" id="pdfModalPrint">
+          <i data-lucide="printer"></i> Imprimir / PDF
+        </button>
+      </footer>
+    </div>
+  </div>
+
+  <script src="./vendor/lucide.min.js"></script>
+  <script src="./vendor/jspdf.umd.min.js"></script>
+  <script src="./core/api-config.js"></script>
+  <script src="./core/utils.js"></script>
+  <script src="./core/network.js"></script>
+  <script src="./core/pdf-resguardo.js"></script>
+  <script src="./modules/dashboard.js"></script>
+</body>
+</html>
